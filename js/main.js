@@ -114,6 +114,26 @@ mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => toggleMenu(false));
 });
 
+// =====================
+// FAQ ACCORDION
+// =====================
+document.querySelectorAll('.faq__question').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('faq__item--open');
+        document.querySelectorAll('.faq__item--open').forEach(i => {
+            i.classList.remove('faq__item--open');
+            i.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+            i.querySelector('.faq__icon').textContent = '+';
+        });
+        if (!isOpen) {
+            item.classList.add('faq__item--open');
+            btn.setAttribute('aria-expanded', 'true');
+            btn.querySelector('.faq__icon').textContent = '−';
+        }
+    });
+});
+
 // Nav scroll shadow
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
